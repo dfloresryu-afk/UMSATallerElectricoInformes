@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Universitaria</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- ESTILOS DEL CARRUSEL --- */
+    .galeria {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .slider {
+      position: relative;
+      max-width: 600px;   /* ancho máximo del carrusel */
+      margin: auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .imagenes {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .imagenes img {
+      width: 100%;
+      flex-shrink: 0;   /* evita que se deformen */
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .prev:hover, .next:hover {
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo-nombre">
+        <img src="logo-carrera.png" alt="Logo" class="logo-img">
+        <h1 class="logo-text">Universidad Mayor de San Andres</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#acerca">Acerca</a></li>
+        <li><a href="#informes">Informes</a></li>
+        <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle">☰</button>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <!-- Imagen grande de la facultad -->
+    <img src="facultad.jpg" alt="Foto de la Facultad" class="facultad-img">
+    <h2>Bienvenido a la Página de Presentación de Laboratorio de Electrónica de Potencia I</h2>
+    <p>Formando profesionales con excelencia académica.</p>
+
+    <!-- 🚀 CARRUSEL DE IMÁGENES -->
+    <div class="galeria">
+      <div class="slider">
+        <button class="prev">&#10094;</button>
+        <div class="imagenes">
+          <img src="imagenes/img1.jpg" alt="Imagen 1">
+          <img src="imagenes/img2.jpg" alt="Imagen 2">
+          <img src="imagenes/img3.jpg" alt="Imagen 3">
+        </div>
+        <button class="next">&#10095;</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="acerca">
+    <h2>Acerca de Nosotros</h2>
+    <p>Somos una institución comprometida con la educación, investigación y desarrollo.</p>
+  </section>
+
+  <section id="informes">
+    <h2>Informes</h2>
+    <div class="grid">
+      <div class="card">
+        <a href="https://docs.google.com/document/d/1fwwNBr-mmUcMv64FXJ31ZsYnxrrts-QA8NN2UMXNb_Q/edit?tab=t.0">Laboratorio Práctico N°1</a>
+      </div>
+      <div class="card">
+        <a href="https://docs.google.com/document/d/1hHU8XWnXAkGUmeXUJtvdXH-DSIcbhwFHp72imxjOoxM/edit?usp=sharing">Laboratorio Práctico N°2</a>
+      </div>
+      <div class="card">
+        <a href="https://docs.google.com/document/d/17HdXPJPrtVYUo5bGH-kSU5nIkCgOdHQUxlJ8UqfyRLk/edit?tab=t.0">Laboratorio Práctico N°3</a>
+      </div>
+      <div class="card"><a href="#">Laboratorio Práctico N°4</a></div>
+      <div class="card"><a href="#">Laboratorio Práctico N°5</a></div>
+    </div>
+  </section>
+
+  <section id="eventos">
+    <h2>Eventos</h2>
+    <ul>
+      <li>Semana de la Ciencia - Octubre</li>
+      <li>Feria Tecnológica - Noviembre</li>
+      <li>Jornadas Académicas - Diciembre</li>
+    </ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form id="contactForm">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <input type="email" id="email" placeholder="Tu correo" required>
+      <textarea id="mensaje" placeholder="Escribe tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="formMsg"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Universidad. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- SCRIPT DEL CARRUSEL -->
+  <script>
+    const imagenes = document.querySelector('.imagenes');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 0;
+
+    next.addEventListener('click', () => {
+      index = (index + 1) % imagenes.children.length;
+      imagenes.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    prev.addEventListener('click', () => {
+      index = (index - 1 + imagenes.children.length) % imagenes.children.length;
+      imagenes.style.transform = `translateX(-${index * 100}%)`;
+    });
+  </script>
+</body>
+</html>
